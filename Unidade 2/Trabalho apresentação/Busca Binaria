@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int busca_binaria(int arr[], int tamanho, int elemento) {
+    int esquerda = 0;
+    int direita = tamanho - 1;
+
+    while (esquerda <= direita) {
+        int meio = esquerda + (direita - esquerda) / 2;
+
+        if (arr[meio] == elemento)
+            return meio; // Elemento encontrado
+
+        if (arr[meio] < elemento)
+            esquerda = meio + 1;
+        else
+            direita = meio - 1;
+    }
+
+    return -1; // Elemento não encontrado
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int tamanho = sizeof(arr) / sizeof(arr[0]);
+    int elemento = 10;
+    int resultado = busca_binaria(arr, tamanho, elemento);
+    if (resultado != -1)
+        printf("Elemento encontrado no índice %d\n", resultado);
+    else
+        printf("Elemento não encontrado\n");
+    return 0;
+}
